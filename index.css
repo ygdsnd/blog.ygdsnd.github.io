@@ -1,0 +1,293 @@
+@font-face {
+    src: url(./PingFangSC-Regular.woff2);
+    font-family: "PingFang";
+}
+
+@font-face {
+    src: url(./sf-pro-display_regular.woff2);
+    font-family: "SFPro";
+}
+
+* {
+    font-family: "SFPro", "PingFang";
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    z-index: 2;
+    margin: 0;
+    background: #000;
+}
+
+.main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    transition: scale 0.3s ease;
+}
+
+.leftcontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* padding-left: 20%; */
+}
+
+.svgcontainer {
+    width: 250px;
+    height: 250px;
+    padding: 20px;
+    background: #e8e8e8;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px #0005;
+    transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-top: 28px;
+    transform: scale(1);
+}
+
+.svgcontainer:hover {
+    transform: scale(1.1);
+}
+
+.svg {
+    transform: scale(3);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.processbar {
+    width: 325px;
+    background: #fff9;
+    height: 8px;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 0 3px #0009;
+}
+
+.process {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 3px #0009;
+}
+
+.time {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 325px;
+    color: #fff;
+    text-shadow: 0 0 3px #0009;
+}
+
+p {
+    margin: 0;
+}
+
+.name {
+    -webkit-user-select: auto;
+    user-select: auto;
+}
+
+.controls, .controls > * {
+    display: flex;
+    width: 32px;
+    height: 28px;
+}
+
+.controls > .play {
+    display: block;
+    transition: transform 0.1s ease;
+}
+
+.controls > .pause {
+    display: none;
+    transition: transform 0.1s ease;
+}
+
+.rightcontent {
+    display: flex;
+    width: 50%;
+    height: auto;
+    padding-left: 10vw;
+}
+
+.lyricscontainer {
+    width: 50vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    /* box-shadow: 0px 0px 100px 50px #000 inset; */
+    z-index: 2;
+    padding: 0 5vw;
+}
+
+.lyrics {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 24px;
+    line-height: 40px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.lyrics div {
+    margin: 2% 0;
+    opacity: 0.3;
+    will-change: opacity, font-size, font-weight, margin-left, margin-top, margin-bottom;
+    transition: opacity 0.75s cubic-bezier(0.25, 0.8, 0.25, 1),
+        font-size 0.75s cubic-bezier(0.25, 0.8, 0.25, 1),
+        font-weight 0.75s cubic-bezier(0.25, 0.8, 0.25, 1),
+        margin-left 0.75s cubic-bezier(0.25, 0.8, 0.25, 1),
+        margin-top 1s cubic-bezier(0.25, 0.8, 0.25, 1),
+        margin-bottom 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+    text-shadow: 0 1px 5px #000;
+    font-weight: normal;
+    font-size: inherit;
+    margin-top: 2%;
+    font-size: 28px;
+    word-wrap: break-word;
+    white-space: normal;
+    /* word-break: break-all; */
+}
+
+.lyrics div.highlight {
+    margin: 2% 0;
+    opacity: 1;
+    font-size: 32px;
+    font-weight: bold;
+    filter: none;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.background {
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    background-color: var(--background);
+    background-image:
+        radial-gradient(closest-side, var(--color1), var(--color1-rgba)),
+        radial-gradient(closest-side, var(--color2), var(--color2-rgba)),
+        radial-gradient(closest-side, var(--color3), var(--color3-rgba)),
+        radial-gradient(closest-side, var(--color4), var(--color4-rgba)),
+        radial-gradient(closest-side, var(--color5), var(--color5-rgba));
+    background-size:
+        130vmax 130vmax,
+        80vmax 80vmax,
+        90vmax 90vmax,
+        110vmax 110vmax,
+        90vmax 90vmax;
+    background-position:
+        -80vmax -80vmax,
+        60vmax -30vmax,
+        10vmax 10vmax,
+        -30vmax -10vmax,
+        50vmax 50vmax;
+    background-repeat: no-repeat;
+    animation: 20s movement linear infinite;
+    background-attachment: fixed;
+}
+
+@keyframes movement {
+
+    0%,
+    100% {
+        background-size:
+            130vmax 130vmax,
+            80vmax 80vmax,
+            90vmax 90vmax,
+            110vmax 110vmax,
+            90vmax 90vmax;
+        background-position:
+            -80vmax -80vmax,
+            60vmax -30vmax,
+            10vmax 10vmax,
+            -30vmax -10vmax,
+            50vmax 50vmax;
+    }
+
+    25% {
+        background-size:
+            100vmax 100vmax,
+            90vmax 90vmax,
+            100vmax 100vmax,
+            90vmax 90vmax,
+            60vmax 60vmax;
+        background-position:
+            -60vmax -90vmax,
+            50vmax -40vmax,
+            0vmax -20vmax,
+            -40vmax -20vmax,
+            40vmax 60vmax;
+    }
+
+    50% {
+        background-size:
+            80vmax 80vmax,
+            110vmax 110vmax,
+            80vmax 80vmax,
+            60vmax 60vmax,
+            80vmax 80vmax;
+        background-position:
+            -50vmax -70vmax,
+            40vmax -30vmax,
+            10vmax 0vmax,
+            20vmax 10vmax,
+            30vmax 70vmax;
+    }
+
+    75% {
+        background-size:
+            90vmax 90vmax,
+            90vmax 90vmax,
+            100vmax 100vmax,
+            90vmax 90vmax,
+            70vmax 70vmax;
+        background-position:
+            -50vmax -40vmax,
+            50vmax -30vmax,
+            20vmax 0vmax,
+            -10vmax 10vmax,
+            40vmax 60vmax;
+    }
+}
+
+.noTransition, .noTransition * {
+    transition: none !important;
+}
